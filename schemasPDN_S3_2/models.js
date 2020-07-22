@@ -2,40 +2,54 @@ const { Schema, model } = require('mongoose');
 
  
 let spicSchema = new Schema({
-  // fechaCaptura: String,
-   rfc: String,
-   curp: String,
-   nombres: String,
-   primerApellido: String,
-   segundoApellido: String,
-   genero: {
-       clave: String,
-       valor: String
-   },
+   fechaCaptura: String,
+   expediente: String,
    institucionDependencia: {
-       nombre: String,
-       clave: String,
-       siglas: String
+             nombre: String,
+             clave: String,
+             siglas: String
+         },
+   servidorPublicoSancionado:{
+          rfc: String,
+          curp: String,
+          nombres: String,
+          primerApellido: String,
+          segundoApellido: String,
+          genero: {
+                 clave: String,
+                 valor: String
+             },
+         puesto: String,
+         nivel: String
    },
-   autoridadSancionadora: {
-       nombre: String,
-       clave: String,
-       siglas: String
-      },
-   tipoFalta: { type: [], default: void 0 },
+   autoridadSancionadora: String,
+   tipoFalta: {
+            clave: String,
+            valor: String
+    },
    tipoSancion: { type: [], default: void 0 },
-   numeroExpediente: String,
-   multa:{
-        moneda: String,
-        monto: String
+   causaMotivoHechos: String,
+   resolucion:{
+       url:String,
+       fechaResolucion: String
       },
-   puesto:{
-        nombre: String,
-        nivel: String
-      }
-});
+   multa:{
+       monto: String,
+       moneda: {
+           clave:String,
+           valor:String
+       }
+   },
+   inhabilitacion:{
+          plazo: String,
+          fechaInicial:String,
+          fechaFinal:String
+          },
+   documentos: { type: [], default: void 0 },
+   observaciones:String
+    });
  
-let Spic = model('S3_2_SancionadosServidoresPublicos', spicSchema, 'S3_2_SancionadosServidoresPublicos');
+let Spic = model('Spic', spicSchema, 'spic');
  
 module.exports = {
    spicSchema,

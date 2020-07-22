@@ -1,47 +1,56 @@
 const names = [
    {
-       name: 'Alejandra',
-       typePerson:{valor:'FISICA'}
+       name: 'Alejandra Alvarado Castro',
+       typePerson:'F',
+       socialObject:' '
    },
 
    {
-       name: 'Alan',
-       typePerson:{valor:'FISICA'}
+       name: 'Alan Alfonso Prado Infante',
+       typePerson:'F',
+       socialObject:' '
    },
    {
-       name: 'Masamayeto',
-       typePerson:{valor:'FISICA'}
+       name: 'Francisco Javier Sánchez Mariscal',
+       typePerson:'F',
+       socialObject:' '
    },
    {
-       name: 'Crara',
-       typePerson:{valor:'FISICA'}
-
+       name: 'Clara Monsivais Estrada',
+       typePerson:'F',
+       socialObject:' '
    },
    {
-       name: 'Andrea',
-       typePerson:{valor:'FISICA'}
+       name: 'Andrea Fernández Solis',
+       typePerson:'F',
+       socialObject:' '
    },
    {
-       name: 'Gaia',
-       typePerson:{valor:'FISICA'}
+       name: 'Gaia Ortiz Carranza',
+       typePerson:'F',
+       socialObject:' '
    },
    {
-       name: 'Ata',
-       typePerson:{valor:'FISICA'}
+       name: 'Tamara Alemán Castillo',
+       typePerson:'F',
+       socialObject:' '
    },
 
    {
       name: 'SISCOMSAT S. DE R.L. DE C.V.',
-      typePerson:{valor:'MORAL'}
+      typePerson:'M',
+      socialObject:'PROMOCION INMOBILARIA'
    },
 
    {
       name: 'CONSTRUCCIÓN ESPECIALIZADA Y TECNOLÓGICA DE MÉXICO, S.A. DE C.V.',
-      typePerson:{valor:'MORAL'}
+      typePerson:'M',
+      socialObject:'CONSTRUCCION'
    },
    {
        name: 'AZTEC MEDICA, S.A. DE C.V',
-       typePerson:{valor:'MORAL'}
+       typePerson:'M',
+       socialObject:'SERVICIOS DE SALUD'
     }
 ];
 
@@ -116,20 +125,38 @@ const typeSanction = [
 
 const typeDocument = [
   {
-   valor: 'RESOLUCION'
+   tipo: 'RESOLUCION',
+   id:'7D898J6',
+   titulo:'RESOLUCION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2020-04-21T13:13:55.448Z'
   },
   {
-   valor: 'CONSTANCIA_SANCION'
+   tipo: 'CONSTANCIA_SANCION',
+   id:'35SH512',
+   titulo:'CONSTANCIA_SANCION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2019-09-21T14:06:55.448Z'
   },
   {
-   valor: 'CONSTANCIA_INHABILITACION'
+   tipo: 'CONSTANCIA_INHABILITACION',
+   id:'841SG8',
+   titulo:'CONSTANCIA_INHABILITACION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2020-07-12T17:22:55.448Z'
   },
   {
-   valor: 'CONSTANCIA_ABSTENCION'
+   tipo: 'CONSTANCIA_ABSTENCION',
+   id:'1887AL',
+   titulo:'CONSTANCIA_ABSTENCION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2018-02-19T20:10:29.448Z'
   }
   ];
-
-
 
 const causes = [
   'NO FORMALIZACION DE CONTRATO',
@@ -138,46 +165,86 @@ const causes = [
   'NO HABER EXHIBIDO LA GARANTÍA DE CUMPLIMIENTO DENTRO DEL PLAZO ESTABLECIDO EN LA CONVOCATORIA DE CONFORMIDAD CON LO DISPUESTO EN LOS ARTÍCULOS 48 Y 49 DE LA LEY DE ADQUISICIONES, ARRENDAMIENTOS Y SERVICIOS DEL SECTOR PÚBLICO, POR LO QUE SE RECINDIÓ EL CONTRATO'
 ];
 
-const penalty_fee = [
-   { moneda: 'MXN', monto: '23596.00' },
-   { moneda: 'USD', monto: '6593.00' },
-   { moneda: 'MXN', monto: '86953.00' },
-   { moneda: 'MXN', monto: '256.00' },
-   { moneda: 'USD', monto: '89554.00' },
-   { moneda: 'MXN', monto: '23596.00' },
-   { moneda: 'USD', monto: '6593.00' },
-   { moneda: 'MXN', monto: '2540.00' },
-   { moneda: 'MXN', monto: '12447.00' },
-   { moneda: 'USD', monto: '987555.00' }
+const faulttype = [
+  'Soborno',
+  'Participacion ilícita',
+  'Colusión',
+  'Tráfico de influencias'
 ];
 
-const address = [
-  'Mar de Galilea #108 col. Miramar',
-  'Cerrada Elitia #140 col. Las Torres',
-  'Zamora #330 col. Lomas',
-  'Efesto #560 col.Mitología',
-  'BLVD. BENITO JUAREZ NO. 1466-A col. FRACC. LOS ANGELES TUXTEPEC	',
-  'AV. 5 DE MAYO NO 1100-A col. LOMAS DEL PEDREGAL',
-  'CALLE IGNACIO RAYON NO.934 col. 	COL.LAZARO CARDENAS',
-  'MATAMOROS NO 85 ESQ. 20 DE NOVIEMBRE col.LOS AMIGOS CHARROS',
-  '18 DE MARZO NO. 1111 col. COSTA VERDE',
-  'CALLEJON DE LA NOCHE TRISTE NO.23 #140 col. 	LA PIRAGUA',
-  'CALLE ALDAMA NO.720 col. FRACC. EL SURESTE',
-  'AV INDEPENDENCIA NO. 545-B col.Mitología',
-  'CALLE OCAMPO NO.420 col. Lomas',
-  'LIBERTAD 56 col. Las Torres',
-  'CALLE MORELOS NO. 330 INT.2 col. Lomas',
-  '	BULEVAR BENITO JUAREZ ESQUINA I. MATIAS S/N col.Las Torres'
+const countries = [
+   { country: {valor:'COSTA RICA', clave: 'CR' },
+     streetext:'San Jose', city:'San Jose', province:'picapiedra', code:'05020'},
+
+   { country: {valor:'COLOMBIA', clave: 'CO' },
+     streetext:'Cl.18 83-180 (Casa113)', city:'Antioquia', province:'Antioquia', code:'30030'},
+
+  { country: {valor:'COLOMBIA', clave: 'CO' },
+       streetext:'Calle 67 No. 15-21', city:'Bogotá', province:'Bogotá', code:'40141'},
+
+  { country: {valor:'ITALIA', clave: 'IT' },
+         streetext:'Viale Ippocrate', city:'Salvaterra', province:'Reggio Emilia', code:'33050'},
+
+  { country: {valor:'ITALIA', clave: 'IT' },
+           streetext:'Stradone Antonio Provolo', city:'Capitone', province:'Termi', code:'42010'},
+
+  { country: {valor:'NO PROPORCIONADO', clave: ' ' },
+             streetext:' ',city:' ', province:' ', code:' '}
+];
+
+
+
+const addressmex = [
+
+   { country: {valor:'MEXICO', clave: 'MX' },
+     state: {valor:'Coahuila de Zaragoza', clave: '05' },
+     city: {valor:'Saltillo', clave: '031' },
+     localidad: {valor:'Granja Adelita', clave: '94' },
+     vialidad: {valor:'Efesto', clave: '056' }
+    },
+
+     { country: {valor:'MEXICO', clave: 'MX' },
+          state: {valor:'Hidalgo', clave: '13' },
+          city: {valor:'Tepeapulco', clave: '061' },
+          localidad: {valor:'Irolo', clave: '7' },
+          vialidad: {valor:' ', clave: ' ' }
+          }
+
+];
+
+const numbers = [
+'454',
+'34',
+'29C',
+'20',
+'12',
+'109A',
+'42',
+'824',
+'12B',
+'29C',
+'203',
+'1782',
+'1239A',
+'138'
+];
+
+
+const penalty_fee = [
+   { monto: '23596.00', moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: '256.00',  moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: '8945.00', moneda:{clave:'MXN',valor:'Peso mexicano'}},
+   { monto: '21577.00', moneda:{clave:'MXN',valor:'Peso mexicano'}}
 ];
 
 const telephone = [
-  '8445562323',
-  '444-6555',
+  '787-782-5400',
+  ' (57-2) 3350233',
   '3764 656624',
   '8941015551',
-  '3764 837539',
+  '876-965-6004',
   '3764 275046',
-  '8412287445',
+  '053-232553',
   '3764 169080'
 ];
 
@@ -187,7 +254,27 @@ const numExp = [
   '222/2015',
   '652/2019',
   '230/2002',
-  '431/2015',
+  '431/2015'
+];
+
+const authority = [
+  'CNDH',
+  'PRONIF',
+  'DIF',
+  'PGR',
+  'SHCP',
+  'IMSS',
+];
+
+const dates = [
+  '2020-01-08T10:15:14.824Z',
+  '2019-07-19T22:44:00.353Z',
+  '2020-02-13T12:19:14.824Z',
+  '2002-04-02T20:34:00.353Z',
+  '2020-10-08T10:15:14.824Z',
+  '2004-08-19T22:44:00.353Z',
+  '2012-02-13T12:19:14.824Z',
+  '2015-06-02T20:34:00.353Z'
 ];
 
 const getRandomIntInclusive = (min, max) => {
@@ -202,7 +289,7 @@ const rfc = (person) => {
    let year = getRandomIntInclusive(70, 99);
    let month = getRandomIntInclusive(1, 12);
    let day = getRandomIntInclusive(1, 28);
- 
+
    if (month < 10) {
        month = '0' + month;
    }
@@ -214,7 +301,7 @@ const rfc = (person) => {
  let homoclave = randomChoice([ 'A', 'B', 'C', 'D', 'E' ]) + getRandomIntInclusive(10, 99);
    let iniciales =
        primerApellido.slice(0, 2).toUpperCase() + segundoApellido[0].toUpperCase() + nombres[0].toUpperCase();
- 
+
    return `${iniciales}${year}${month}${day}${homoclave}`;
 };
 
@@ -224,7 +311,7 @@ const curp = (person) => {
    let year = getRandomIntInclusive(70, 99);
    let month = getRandomIntInclusive(1, 12);
    let day = getRandomIntInclusive(1, 28);
- 
+
    if (month < 10) {
        month = '0' + month;
    }
@@ -232,7 +319,7 @@ const curp = (person) => {
  if (day < 10) {
 	    day = '0' + day;
    }
-   
+
    let consonants1 = primerApellido.toUpperCase();
    let consonants2 = segundoApellido.toUpperCase();
    let consonants3 = nombres.toUpperCase();
@@ -245,11 +332,11 @@ const curp = (person) => {
 
  const consonants = consonants1[1] + consonants2[1] + consonants3[1];
    //const sexo = genero.clave === 'F' ? 'M' : 'H';
- 
+
    let complemento = randomChoice([ 'VZ', 'DF', 'OX' ]) + consonants + getRandomIntInclusive(10, 99);
    let iniciales =
        primerApellido.slice(0, 2).toUpperCase() + segundoApellido[0].toUpperCase() + nombres[0].toUpperCase();
- 
+
    return `${iniciales}${year}${month}${day}${complemento}`;
 };
 
@@ -265,6 +352,13 @@ const getAddress = () => randomChoice(address);
 const getTelephone = () => randomChoice(telephone);
 const getResponsible = () => randomChoice(responsible);
 const getNumExp = () => randomChoice(numExp);
+const getCountries = () => randomChoice(countries);
+const getAddressmex = () => randomChoice(addressmex);
+const getFaulttype = () => randomChoice(faulttype);
+const getNumbers = () => randomChoice(numbers);
+const getAuthority = () => randomChoice(authority);
+const getDates = () => randomChoice(dates);
+
 
 module.exports = {
    randomChoice,
@@ -277,10 +371,15 @@ module.exports = {
    getTypeDocuments,
    getCause,
    getPenaltyFee,
-   getAddress,
    getTelephone,
    getResponsible,
-   getNumExp
+   getNumExp,
+   getAddressmex,
+   getFaulttype,
+   getNumbers,
+   getAuthority,
+   getCountries,
+   getDates
 };
 
 

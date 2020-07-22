@@ -39,7 +39,7 @@ let spicSchema = new Schema({
    }
 });
  
-let Spic = model('S2_ServidoresPublicosEnContrataciones', spicSchema, 'S2_ServidoresPublicosEnContrataciones');
+let Spic = model('Spic', spicSchema, 'spic');
  
 module.exports = {
    spicSchema,

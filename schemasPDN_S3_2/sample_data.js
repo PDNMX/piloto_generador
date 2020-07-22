@@ -4,19 +4,19 @@ const names = [
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
-       name: 'Abetu',
+       name: 'Alberto',
        gender: { clave: 'M', valor: 'MASCULINO' }
    },
    {
-       name: 'Alan',
+       name: 'Giovanni',
        gender: { clave: 'M', valor: 'MASCULINO' }
    },
    {
-       name: 'Masamayeto',
+       name: 'Homero',
        gender: { clave: 'M', valor: 'MASCULINO' }
    },
    {
-       name: 'Crara',
+       name: 'Yazdel',
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
@@ -28,24 +28,24 @@ const names = [
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
-       name: 'Ata',
+       name: 'Tamara',
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
-       name: 'Hernan',
+       name: 'Hernán',
        gender: { clave: 'O', valor: 'OTRO' }
    }
 ];
 
 
 const last_names = [
-   'Martinez',
+   'Martínez',
    'Cuevas',
    'Gallegos',
    'Morales',
    'García',
-   'Valdes',
-   'Juarez',
+   'Valdéz',
+   'Juárez',
    'Flores',
    'Villarreal',
    'Rodriguez',
@@ -118,16 +118,10 @@ const numExp = [
 ];
 
 const penalty_fee = [
-   { moneda: 'MXN', monto: '23596.00' },
-   { moneda: 'USD', monto: '6593.00' },
-   { moneda: 'MXN', monto: '86953.00' },
-   { moneda: 'MXN', monto: '256.00' },
-   { moneda: 'USD', monto: '89554.00' },
-   { moneda: 'MXN', monto: '23596.00' },
-   { moneda: 'USD', monto: '6593.00' },
-   { moneda: 'MXN', monto: '2540.00' },
-   { moneda: 'MXN', monto: '12447.00' },
-   { moneda: 'USD', monto: '987555.00' }
+   { monto: '23596.00', moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: '256.00',  moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: '8945.00', moneda:{clave:'MXN',valor:'Peso mexicano'}},
+   { monto: '21577.00', moneda:{clave:'MXN',valor:'Peso mexicano'}}
 ];
 
 const positions = [
@@ -141,7 +135,7 @@ const positions = [
    },
    {
        nombre: 'Titular de Unidad',
-  nivel: 'J31'
+       nivel: 'J31'
    },
    {
        nombre: 'Director General',
@@ -156,6 +150,89 @@ const positions = [
        nivel: 'L31'
    }
 ];
+
+const authority = [
+  'CNDH',
+  'PRONIF',
+  'DIF',
+  'PGR',
+  'SHCP',
+  'IMSS',
+];
+const dates = [
+  '2020-01-08T10:15:14.824Z',
+  '2019-07-19T22:44:00.353Z',
+  '2020-02-13T12:19:14.824Z',
+  '2002-04-02T20:34:00.353Z',
+  '2020-10-08T10:15:14.824Z',
+  '2004-08-19T22:44:00.353Z',
+  '2012-02-13T12:19:14.824Z',
+  '2015-06-02T20:34:00.353Z'
+];
+const causes = [
+  'NO FORMALIZACION DE CONTRATO',
+  'LA EMPRESA PROPORCIONÓ INFORMACIÓN NO VERAZ',
+  'NO ENTREGAR LA OBRA EN LA FECHA COMPROMETIDA',
+  'NO HABER EXHIBIDO LA GARANTÍA DE CUMPLIMIENTO DENTRO DEL PLAZO ESTABLECIDO EN LA CONVOCATORIA DE CONFORMIDAD CON LO DISPUESTO EN LOS ARTÍCULOS 48 Y 49 DE LA LEY DE ADQUISICIONES, ARRENDAMIENTOS Y SERVICIOS DEL SECTOR PÚBLICO, POR LO QUE SE RECINDIÓ EL CONTRATO'
+];
+
+const inhabilitado = [
+   {
+       plazo: '2 años',
+       fechaInicial: '2018-01-08T10:15:14.824Z',
+       fechaFinal: '2020-01-08T10:15:14.824Z'
+   },
+   {
+       plazo: '1 mes',
+       fechaInicial: '2018-01-08T10:15:14.824Z',
+       fechaFinal: '2020-02-08T10:15:14.824Z'
+   },
+   {
+      plazo: '4 años',
+      fechaInicial: '2016-01-08T10:15:14.824Z',
+      fechaFinal: '2020-01-08T10:15:14.824Z'
+   },
+   {
+        plazo: '7 meses',
+        fechaInicial: '2017-01-02T10:15:14.824Z',
+        fechaFinal: '2017-08-02T10:15:14.824Z'
+   }
+];
+
+const typeDocument = [
+  {
+   tipo: 'RESOLUCION',
+   id:'7D898J6',
+   titulo:'RESOLUCION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2020-04-21T13:13:55.448Z'
+  },
+  {
+   tipo: 'CONSTANCIA_SANCION',
+   id:'35SH512',
+   titulo:'CONSTANCIA_SANCION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2019-09-21T14:06:55.448Z'
+  },
+  {
+   tipo: 'CONSTANCIA_INHABILITACION',
+   id:'841SG8',
+   titulo:'CONSTANCIA_INHABILITACION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2020-07-12T17:22:55.448Z'
+  },
+  {
+   tipo: 'CONSTANCIA_ABSTENCION',
+   id:'1887AL',
+   titulo:'CONSTANCIA_ABSTENCION',
+   descripcion:' ',
+   url:' ',
+   fecha:'2018-02-19T20:10:29.448Z'
+  }
+  ];
 
 
 const getRandomIntInclusive = (min, max) => {
@@ -226,9 +303,14 @@ const getLastName = () => randomChoice(last_names);
 const getEntity = () => randomChoice(entities);
 const getNumExp = () => randomChoice(numExp);
 const getTypeSanctions = () => randomChoice(typeSanction);
+const getTypeDocuments = () => randomChoice(typeDocument);
 const getPenaltyFee = () => randomChoice(penalty_fee);
 const getTypePenalty = () => randomChoice(typePenalty);
+const getCauses = () => randomChoice(causes);
 const getPosition = () => randomChoice(positions);
+const getAuthority = () => randomChoice(authority);
+const getDates = () => randomChoice(dates);
+const getInhabilitado = () => randomChoice(inhabilitado);
 
 module.exports = {
    randomChoice,
@@ -239,9 +321,14 @@ module.exports = {
    getEntity,
    getNumExp,
    getTypeSanctions,
+   getTypeDocuments,
    getPenaltyFee,
    getTypePenalty,
-   getPosition
+   getCauses,
+   getPosition,
+   getAuthority,
+   getDates,
+   getInhabilitado
 };
 
 

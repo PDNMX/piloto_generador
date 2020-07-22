@@ -4,19 +4,19 @@ const names = [
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
-       name: 'Abetu',
+       name: 'Alberto',
        gender: { clave: 'M', valor: 'MASCULINO' }
    },
    {
-       name: 'Alan',
+       name: 'Giovanni',
        gender: { clave: 'M', valor: 'MASCULINO' }
    },
    {
-       name: 'Masamayeto',
+       name: 'Homero',
        gender: { clave: 'M', valor: 'MASCULINO' }
    },
    {
-       name: 'Crara',
+       name: 'Yazdel',
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
@@ -28,24 +28,24 @@ const names = [
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
-       name: 'Ata',
+       name: 'Tamara',
        gender: { clave: 'F', valor: 'FEMENINO' }
    },
    {
-       name: 'Hernan',
+       name: 'Hernán',
        gender: { clave: 'O', valor: 'OTRO' }
    }
 ];
 
 
 const last_names = [
-   'Martinez',
+   'Martínez',
    'Cuevas',
    'Gallegos',
    'Morales',
    'García',
-   'Valdes',
-   'Juarez',
+   'Valdéz',
+   'Juárez',
    'Flores',
    'Villarreal',
    'Rodriguez',
