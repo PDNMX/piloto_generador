@@ -1,38 +1,58 @@
-## Generador de Datos S2, S3.1, S3.2 ##
+
+# Generador de Datos S2, S3.1, S3.2
+### Funcionalidad 
+### Pre - requisitos 
+### Recomendacion 
+### Especificaciones Técnicas 
+### Creando Infraestructura 
+### Importando Infraestructura
+### Notas 
+### Código NodeJS 
+### .env 
+### models.js 
+### sampleData.js 
+### createDataS2.js , createDataS3_Particulares.js y 
+### createDataS3_Publicos
+### Preguntas frecuentes
 
 
-### Funcionalidad ###
+
+
+
+
+
+## Funcionalidad 
 
 Este piloto desarrollado en NodeJS genera información aleatoria sobre servidores Públicos en Contrataciones(S2), Sancionados Particulares(S3.1) y Servidores Públicos Sancionados(S3.2) que alimenta una base de datos montada sobre MongoDB, esta información es producida de acuerdo a esquemas definidos a través del catálogo de datos de la PDN que posteriormente pueden ser consultados por medio de API's.
 
 El usuario podrá guardar información en la colección correspondiente únicamente dando como parámetro de entrada el nombre del sistema en cuestión y el número de documentos a crear, más adelante se detalla el procedimiento para crear esta aplicación y su infraestructura desde cero, o bien, haciendo una importación.
 
-### Pre - requisitos ###
+## Pre - requisitos
 
-* Versión estable SLP (soporte de largo-plazo) de NodeJs y NPM previamente instalados, si no se cuenta con ellos puede descargarlos [Aquí](https://nodejs.org/en/download/).
-* MongoDB Previamente instalado y configurado. Se asume que el usuario conoce ya las credenciales asignadas a la base de datos, esta información es indispensable.
+Versión estable SLP (soporte de largo-plazo) de NodeJs y NPM previamente instalados, si no se cuenta con ellos puede descargarlos [Aquí](https://nodejs.org/en/download/).
+MongoDB Previamente instalado y configurado. Se asume que el usuario conoce ya las credenciales asignadas a la base de datos, esta información es indispensable.
 
-### Recomendacion ###
+## Recomendación 
 
 Se recomienda haber leído este documento en su totalidad antes de replicar el generador de datos de manera local.
 
 
-### Especificaciones Técnicas ###
+##Especificaciones Técnicas 
 
 El piloto ha sido desarrollado sobre las siguientes versiones de sus componentes:
 
-* NodeJS v12.18.2
-* NPM 6.14.5
-* MongoDB 4.2
-* Express 4.16.1 Este generador de aplicaciones es opcional porque podemos crear la arquitectura de nuestra aplicación de forma manual,sin embargo, estaremos usando esta herramienta porque hace más fácil el proceso y promueve una estructura modular.
-* Mongoose 5.9.22
+NodeJS v12.18.2
+NPM 6.14.5
+MongoDB 4.2
+Express 4.16.1*
+Mongoose 5.9.22
 
 
-### Creando Infraestructura ###
+##Creando Infraestructura 
 
 Este apartado tiene como objetivo mostrar los pasos a seguir para **crear** la infraestructura de la aplicación prácticamente desde cero(directorios, dependencias, comandos asociados, etc). 
 
-En un bloque posterior mostraremos como **importar** la misma estructura y solamente ocuparnos de ejecutar la aplicación, será decisión del usuario qué método elegir.
+En un bloque posterior mostraremos cómo **importar** La misma estructura y solamente ocuparnos de ejecutar la aplicación, será decisión del usuario qué método elegir.
 
 
 Para este piloto estaremos usando tres proyectos, uno para cada sistema (S2, S3.1 y S3.2) que generarán información que será guardada en la misma base de datos y en diferentes colecciones.
@@ -99,7 +119,6 @@ verificamos que las dependencias hayan sido agregadas a **package.json**
 
 }
 
-
 Cuando estas dos dependencias hayan sido agregadas ya podemos  agregar al directorio de trabajo los archivos que el equipo de TXM Global desarrolló de acuerdo al sistema sobre el que estemos trabajando, en este ejemplo, copiaremos a
 
  **/var/opt/apps/piloto_generador/S2/**
@@ -138,7 +157,7 @@ Si logramos tener esta estructura con éxito entonces ya podemos ejecutar la apl
 
     node createDataS2.js 3
 
-donde el número 3 indica el número de registros a guardar en la base datos, este parámetro es variable.
+donde el número 3 indica el número de registros a guardar en la base de datos, este parámetro es variable.
 La salida del comando será algo similar a esto:
 > 
 > Connected to MongoDB
@@ -174,23 +193,23 @@ La salida del comando será algo similar a esto:
 >     
 > [centos@pdn-rest-api-072020 S2]$
 
-Hasta este punto hemos ejecutado la aplicación para el sistema S2 "Servidores Públicos en contrataciones" y la información está siendo guardada en MongoDB, en una base de datos llamada "test" bajo la colección "S2_Contrataciones", estos parámetros son definidos en el código cuya explicación la podrás encontrar en los siguientes apartados.
+Hasta este punto hemos ejecutado la aplicación para el sistema S2 "Servidores Públicos en contrataciones" y la información está siendo guardada en MongoDB, en una base de datos llamada "S2_contrataciones" bajo la colección "spic", estos parámetros son definidos en el código cuya explicación la podrás encontrar en los siguientes apartados.
 
 
-Como resumen nosotros llevamos a cabo las siguientes actividades.
+Como resumen, nosotros llevamos a cabo las siguientes actividades.
 
-1. Creamos un espacio de trabajo donde correrá la aplicación, este espacio es transparente para el equipo de TXM Global, cada dependencia puede elegir el directorio deseado.
+Creamos un espacio de trabajo donde correrá la aplicación, este espacio es transparente para el equipo de TXM Global, cada dependencia puede elegir el directorio deseado.
 
-1. Creamos el archivo de configuración donde se almacenan las dependencias.
+Creamos el archivo de configuración donde se almacenan las dependencias.
 
-1. Almacenamos las dependencias necesarias para poder escribir en la base de datos.
+Almacenamos las dependencias necesarias para poder escribir en la base de datos.
 
-1. Ejecutamos la aplicación para crear personas ficticias en MongoDb.
+Ejecutamos la aplicación para crear personas ficticias en MongoDb.
 
 
 ### Importando Infraestructura ###
 
-En el bloque anterior, se **creó** el esqueleto de la aplicación, en este mostraremos como **importarlo**  siendo esto una opción extra.
+En el bloque anterior, se **creó** el esqueleto de la aplicación, en este mostraremos cómo **importarlo**  siendo esto una opción extra.
 
 Como primer paso debemos copiar todo el contenido de **.../schemasPDN_S2** dentro del espacio de trabajo que hayamos seleccionado.
 
@@ -220,7 +239,7 @@ Los pasos a seguir son exactamente los mismos, solo varía el  nombre del espaci
 
 
 
-### Código NodeJS ###
+## Código NodeJS
 
 ### .env ###
 
@@ -282,19 +301,13 @@ Las líneas de código más importantes en models.js se explican a continuación
 
 Es la primera línea, indica que estaremos usando mongoose como herramienta para añadir información a la base de datos bajo un esquema definido. 
 
-> let Spic = model('S2_Contrataciones', spicSchema,'S2_Contrataciones');
+> let Spic = model('Spic', spicSchema,'spic');
 
-En esta linea se define el nombre de la colección donde vamos a almacenar los documentos creados, esta instrucción es diferente para cada sistema dado que es recomendado tener cierta independencia entre ellos, para S3.1 tenemos:
-
-> let Spic = model('S3_Particulares', spicSchema,'S3_Particulares');
-
-y para S3.2 tenemos:
-
-> let Spic = model('S3_Publicos', spicSchema,'S3_Publicos');
+En esta línea se define el nombre de la colección donde vamos a almacenar los documentos creados, esta instrucción es la misma para cada sistema dado que almacenaremos la información en la misma colección pero en una base de datos diferente.
 
  
 
-Información técnica más específica sobre moongose se puede encontrar  [Aquí](https://mongoosejs.com/docs/models.html).
+Información técnica más específica sobre mongoose se puede encontrar  [Aquí](https://mongoosejs.com/docs/models.html).
 
 ### sampleData.js ###
 
@@ -318,15 +331,15 @@ estamos indicando que usaremos el **esquema diseñado en models.js** para insert
 Es así como todos los archivos de la estructura se relacionan para lograr el objetivo de generar datos aleatorios y poblar el DWH.
 
 
-### Preguntas frecuentes ###
+## Preguntas Frecuentes
 
-* ¿Cómo agrego un "campo" | "atributo" | "columna" extra a una colección?
+* ¿Cómo agrego un "campo" | "atributo" | "columna" extra en una colección?
 
 El campo debe ser añadido a **models.js** y **sample_data.js** del sistema correspondiente (S2, S3.1 o S3.2) para que sea parte del esquema y pueda ser insertado en la base de datos, también es importante incluirlo en el ejecutable de cada sistema(**createData.js**) como *"const"* y agregarlo al *"data.push"* de este mismo fichero.
 
 * ¿Cómo elimino un "campo" | "atributo" | "columna" extra de una colección?
 
- Bastaría con eliminar la línea de este campo en el *"data.push"* de **createData.js** , sin embargo se recomienda también eliminar las lineas correspondientes en **models.js** y **sample_data**.js
+ Bastaría con eliminar la línea de este campo en el *"data.push"* de **createData.js** , sin embargo se recomienda también eliminar las líneas correspondientes en **models.js** y **sample_data.js**
 
 * ¿Qué pasa si no tengo conexión a MongoDB?
 
@@ -344,30 +357,5 @@ sustituye en la variable "*mongoDB*" los datos de tu instancia.
 
 
 Si el problema persiste contacta al personal de soporte.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

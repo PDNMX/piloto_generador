@@ -9,9 +9,15 @@ const {
    getEntity,
    getNumExp,
    getTypeSanctions,
+   getTypeDocuments,
    getPenaltyFee,
    getTypePenalty,
-   getPosition
+   getCauses,
+   getPosition,
+   getAuthority,
+   getDates,
+   getInhabilitado
+
 } = require('./sample_data');
 
 let nrows = process.argv[2];
@@ -34,28 +40,47 @@ let data = [];
 
 for (let i = 0; i < nrows; i++) {
    const ng = getNamesGender();
+   const puesto = getPosition();
 
    
     data.push({
-       rfc: '',
-      // curp: '',
-       nombres: ng.name,
-       primerApellido: getLastName(),
-       segundoApellido: getLastName(),
-       genero: ng.gender,
-       institucionDependencia: getEntity(),
-       puesto: getPosition(),
+      fechaCaptura: new Date().toISOString(),
+      expediente:getNumExp(),
+     // nombres: ng.name,
+     // primerApellido: getLastName(),
+     // segundoApellido: getLastName(),
+      institucionDependencia: getEntity(),
+      servidorPublicoSancionado:{
+        nombres:ng.name,
+        primerApellido: getLastName(),
+        segundoApellido: getLastName(),
+        rfc: ' ',
+        curp: ' ',
+        genero: ng.gender,
+        puesto: puesto.nombre,
+        nivel: puesto.nivel
+        },
+       autoridadSancionadora:getAuthority(),
+       tipoFalta: getTypePenalty(),
        tipoSancion: [ getTypeSanctions() ],
-       tipoFalta: [ getTypePenalty() ],
-       autoridadSancionadora: getEntity(),
+       causaMotivoHechos:getCauses(),
+       resolucion:
+           {
+            url: ' ',
+            fechaResolucion:getDates()
+           },
        multa:getPenaltyFee(),
-       numeroExpediente:getNumExp(),
-       puesto: getPosition()
+       inhabilitacion:getInhabilitado(),
+       observaciones: ' ',
+        documentos:[getTypeDocuments()]
    });
 }
 
 data = data.map((d) => {
-	   d.rfc = rfc(d);
+	   //d.rfc = rfc(d);
+	   //d.curp = curp(d);
+	   d.servidorPublicoSancionado.rfc = rfc(d.servidorPublicoSancionado);
+	   d.servidorPublicoSancionado.curp = curp(d.servidorPublicoSancionado);
    return d;
 });
 
