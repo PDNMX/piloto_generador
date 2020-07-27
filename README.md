@@ -1,39 +1,16 @@
 
 # Generador de Datos S2, S3.1, S3.2
-### Funcionalidad 
-### Pre - requisitos 
-### Recomendacion 
-### Especificaciones Técnicas 
-### Creando Infraestructura 
-### Importando Infraestructura
-### Notas 
-### Código NodeJS 
-### .env 
-### models.js 
-### sampleData.js 
-### createDataS2.js , createDataS3_Particulares.js y 
-### createDataS3_Publicos
-### Preguntas frecuentes
-
-
-
-
-
-
 
 ## Funcionalidad 
 
-Este piloto desarrollado en NodeJS genera información aleatoria sobre servidores Públicos en Contrataciones(S2), Sancionados Particulares(S3.1) y Servidores Públicos Sancionados(S3.2) que alimenta una base de datos montada sobre MongoDB, esta información es producida de acuerdo a esquemas definidos a través del catálogo de datos de la PDN que posteriormente pueden ser consultados por medio de API's.
-
-El usuario podrá guardar información en la colección correspondiente únicamente dando como parámetro de entrada el nombre del sistema en cuestión y el número de documentos a crear, más adelante se detalla el procedimiento para crear esta aplicación y su infraestructura desde cero, o bien, haciendo una importación.
+Este generador de datos sintéticos piloto desarrollado en NodeJS, genera información aleatoria sobre Servidores Públicos en Contrataciones, Particulares Sancionados y Servidores Públicos Sancionados que alimenta una base de datos montada sobre MongoDB. Esta información es producida de acuerdo con esquemas definidos a través del catálogo de datos de la Plataforma Digital Nacional (PDN) que posteriormente serán consultados por medio de API's.
+ 
+El usuario podrá guardar información en la base de datos que él mismo defina, únicamente dando como parámetro de entrada el nombre del sistema en cuestión y el número de documentos a crear.
 
 ## Pre - requisitos
 
-Versión estable SLP (soporte de largo-plazo) de NodeJs y NPM previamente instalados, si no se cuenta con ellos puede descargarlos [Aquí](https://nodejs.org/en/download/).
-MongoDB Previamente instalado y configurado. Se asume que el usuario conoce ya las credenciales asignadas a la base de datos, esta información es indispensable.
-
-## Recomendación 
-
+Versión estable SLP (soporte de largo-plazo) de NodeJs y NPM previamente instalados, si no se cuenta con ellos puede descargarlos del siguiente enlace [Aquí](https://nodejs.org/en/download/).
+MongoDB Previamente instalado y configurado. Se asume que el usuario conoce ya las credenciales asignadas a la base de datos, esta información es indispensable. 
 Se recomienda haber leído este documento en su totalidad antes de replicar el generador de datos de manera local.
 
 
@@ -49,17 +26,18 @@ Mongoose 5.9.22
 
 
 ##Creando Infraestructura 
+Este apartado tiene como objetivo mostrar los pasos a seguir para crear la infraestructura de la aplicación desde cero (directorios, dependencias, comandos asociados, etc) para su ejecución en un ambiente de desarrollo.
+Se usan tres proyectos: uno para S2, uno para S3.1 y uno más para S3.2. Cada proyecto estará generando información que será almacenada en diferentes bases de datos y en una colección con el mismo nombre, por lo tanto, los pasos aquí descritos deberán ejecutarse en su totalidad para cada sistema/proyecto.
+Los detalles de cada instrucción y explicación del código se pueden encontrar más adelante.
 
-Este apartado tiene como objetivo mostrar los pasos a seguir para **crear** la infraestructura de la aplicación prácticamente desde cero(directorios, dependencias, comandos asociados, etc). 
+##Sistema S2 Servidores Públicos en Contrataciones
+Como primera instancia, se debe trabajar sobre el directorio donde se creará el generador de datos que almacenará información del sistema S2, el equipo de TXM Global ha elegido determinado path como espacio de trabajo, sin embargo, el usuario puede elegir el que mejor le convenga, en este documento se maneja el siguiente directorio para efecto de demostración:	
 
-En un bloque posterior mostraremos cómo **importar** La misma estructura y solamente ocuparnos de ejecutar la aplicación, será decisión del usuario qué método elegir.
+    cd /var/opt/apps/piloto_generador/
+	
+El siguiente paso será  crear la base de la aplicación y un archivo llamado package.json que va a contener las dependencias que necesitaremos conforme vayamos agregando funcionalidades, entre ellas la de la base de datos para que la aplicación pueda ejecutar operaciones de Create, Retrieve, Update, y Delete (CRUD) y una más para poder usar variables de ambiente. 
 
-
-Para este piloto estaremos usando tres proyectos, uno para cada sistema (S2, S3.1 y S3.2) que generarán información que será guardada en la misma base de datos y en diferentes colecciones.
-
-Como primera instancia, debemos trabajar sobre el directorio donde crearemos la estructura base.
-
-    cd /var/opt/apps/piloto_generador/S2
+	cd /var/opt/apps/piloto_generador/
 
 Usaremos el comando `npm init` para crear un archivo llamado package.json que va a contener las dependencias de nuestra aplicación, la consola nos irá solicitando información para este archivo, a continuación se muestra el detalle:
 
