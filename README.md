@@ -1,10 +1,9 @@
-
 # Generador de Datos S2, S3.1, S3.2
 
 ## Funcionalidad 
 
 Este generador de datos sintéticos piloto desarrollado en NodeJS, genera información aleatoria sobre Servidores Públicos en Contrataciones, Particulares Sancionados y Servidores Públicos Sancionados que alimenta una base de datos montada sobre MongoDB. Esta información es producida de acuerdo con esquemas definidos a través del catálogo de datos de la Plataforma Digital Nacional (PDN) que posteriormente serán consultados por medio de API's.
- 
+
 El usuario podrá guardar información en la base de datos que él mismo defina, únicamente dando como parámetro de entrada el nombre del sistema en cuestión y el número de documentos a crear.
 
 ## Pre - requisitos
@@ -14,7 +13,7 @@ MongoDB Previamente instalado y configurado. Se asume que el usuario conoce ya l
 Se recomienda haber leído este documento en su totalidad antes de replicar el generador de datos de manera local.
 
 
-##Especificaciones Técnicas 
+Especificaciones Técnicas 
 
 El piloto ha sido desarrollado sobre las siguientes versiones de sus componentes:
 
@@ -24,198 +23,78 @@ MongoDB 4.2
 Express 4.16.1*
 Mongoose 5.9.22
 
+## **Creando Infraestructura** 
 
-##Creando Infraestructura 
 Este apartado tiene como objetivo mostrar los pasos a seguir para crear la infraestructura de la aplicación desde cero (directorios, dependencias, comandos asociados, etc) para su ejecución en un ambiente de desarrollo.
 Se usan tres proyectos: uno para S2, uno para S3.1 y uno más para S3.2. Cada proyecto estará generando información que será almacenada en diferentes bases de datos y en una colección con el mismo nombre, por lo tanto, los pasos aquí descritos deberán ejecutarse en su totalidad para cada sistema/proyecto.
-Los detalles de cada instrucción y explicación del código se pueden encontrar más adelante.
+Los detalles de cada instrucción y explicación del código se pueden encontrar en la documentación oficial de la aplicación.
 
-##Sistema S2 Servidores Públicos en Contrataciones
+### Sistema S2 Servidores Públicos en Contrataciones
+
 Como primera instancia, se debe trabajar sobre el directorio donde se creará el generador de datos que almacenará información del sistema S2, el equipo de TXM Global ha elegido determinado path como espacio de trabajo, sin embargo, el usuario puede elegir el que mejor le convenga, en este documento se maneja el siguiente directorio para efecto de demostración:	
 
-    cd /var/opt/apps/piloto_generador/
-	
+`cd /var/opt/apps/piloto_generador/`
+
 El siguiente paso será  crear la base de la aplicación y un archivo llamado package.json que va a contener las dependencias que necesitaremos conforme vayamos agregando funcionalidades, entre ellas la de la base de datos para que la aplicación pueda ejecutar operaciones de Create, Retrieve, Update, y Delete (CRUD) y una más para poder usar variables de ambiente. 
 
-	cd /var/opt/apps/piloto_generador/
+	express S2
+	cd /var/opt/apps/piloto_generador/S2
+	sudo npm install -save mongoose
+	sudo npm install -save dotenv
+	
+	
 
-Usaremos el comando `npm init` para crear un archivo llamado package.json que va a contener las dependencias de nuestra aplicación, la consola nos irá solicitando información para este archivo, a continuación se muestra el detalle:
+Una vez agregadas las dependencias iremos añadiendo los archivos que conforman la arquitectura base.
 
-> name: (piloto_generador_S2)
-> 
-> version: (1.0.0)
-> 
-> description: generador de datos para sistema S2
-> 
-> entry point: (index.js)
-> 
-> test command:
-> 
-> git repository:
-> 
-> keywords:
-> 
-> author: TXM Global
-> 
-> license: (ISC)
-> 
-> About to write to /var/opt/apps/piloto_generador/S2/package.json:
-> 
- 
-Agregaremos las dependencias de la base de datos para que la aplicación pueda ejecutar operaciones CRUD.
+    cd /var/opt/apps/piloto_generador/S2
+    touch models.js
+    touch db_conf.js
+    touch createDataS2.js
+    touch sample_data.js
 
-     sudo npm install --save dotenv
-     sudo npm install --save  mongoose
+El contenido de cada modulo de la arquitectura se establece en el código de este repositorio.
 
-verificamos que las dependencias hayan sido agregadas a **package.json**
+### **Sistema S3.2 Particulares Sancionados**
 
-`more package.json`    
-                                                
-{
-  "name": "piloto_generador_S2",
+Recordemos que para el sistema S2 habíamos creado un espacio de trabajo en
 
-  "version": "1.0.0",
+`/var/opt/apps/piloto_generador/S2`
 
-  "description": "generador de datos para sistema S2",
+Ahora crearemos uno más para Sancionados.
 
-  "main": "index.js",
+```
+cd /var/opt/apps/piloto_generador
+express S3_Particulares
+cd /var/opt/apps/piloto_generador/S3_Particulares
+sudo npm install -save mongoose
+sudo npm install -save dotenv
+```
 
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+Dentro de este directorio replicaremos los pasos en el bloque del sistema S2.
 
-  "author": "TXM Global",
+```
+cd /var/opt/apps/piloto_generador/S3_Particulares
+touch models.js
+touch db_conf.js
+touch createDataS3_Particulares.js
+touch sample_data.js
+```
 
-  "license": "ISC",
+### **Sistema S3.1 Servidores públicos Sancionados**
 
-  "**dependencies**": **{**
+Por último crearemos y nos moveremos al espacio de trabajo elegido para S3.1 y llevaremos a cabo la misma rutina
 
-   "**dotenv**": "**^8.2.0**",
-
-   "**mongoose**": "^**5.9.24**"
-  **}**
-
-}
-
-Cuando estas dos dependencias hayan sido agregadas ya podemos  agregar al directorio de trabajo los archivos que el equipo de TXM Global desarrolló de acuerdo al sistema sobre el que estemos trabajando, en este ejemplo, copiaremos a
-
- **/var/opt/apps/piloto_generador/S2/**
-
-los ficheros de la lista de abajo que se encuentran dentro de la carpeta
-**.../schemasPDN_S2/**  de este repositorio.
-
-1. .env
-1. createDataS2.js
-1. db_conf
-1. models
-1. sampleData.js
-
-El directorio se vería de la siguiente forma:
-
-
-> [centos@pdn-rest-api-072020 S2]$ ls -ltrh
-> 
-> total 28K
-> drwxr-xr-x. 33 root root 4.0K Jul 14 17:27 node_modules
-> 
-> -rw-r--r--.  1 root root  331 Jul 14 17:27 package.json
-> 
-> -rw-r--r--.  1 root root 5.7K Jul 14 17:30 sample_data.js
-> 
-> -rw-r--r--.  1 root root  627 Jul 14 17:30 db_conf.js
-> 
-> -rw-r--r--.  1 root root 2.3K Jul 14 17:30 createDataS2.js
-> 
-> -rw-r--r--.  1 root root 1.1K Jul 14 17:30 models.js
-> 
-> [centos@pdn-rest-api-072020 S2]$
-
-
-Si logramos tener esta estructura con éxito entonces ya podemos ejecutar la aplicación con el siguiente comando:
-
-    node createDataS2.js 3
-
-donde el número 3 indica el número de registros a guardar en la base de datos, este parámetro es variable.
-La salida del comando será algo similar a esto:
-> 
-> Connected to MongoDB
-> 
-> [ { superiorInmediato:
->      { puesto: [Object],
->        nombres: 'Ata',
->        primerApellido: 'Villarreal',
->        segundoApellido: 'García',
->        curp: 'VIGA790201MVZLRA40',
->        rfc: 'VIGA850706B84' },
->     _id: 5f0df3a1e694d02c9f6f32dd,
->     fechaCaptura: '2020-07-14T18:04:17.980Z',
->     ejercicioFiscal: '2018',
->     ramo:
->      { clave: 33,
->        valor: 'Aportaciones Federales para Entidades Federativas y Municipios' },
->     rfc: 'RIVA980408E81',
->     curp: 'RIVA780905MDFVLJ41',
->     nombres: 'Alejandra',
->     primerApellido: 'Rivera',
->     segundoApellido: 'Villarreal',
->     genero: { clave: 'F', valor: 'FEMENINO' },
->     institucionDependencia:
->      { nombre: 'Instituto Federal de Telecomunicaciones',
->        clave: 'IFT',
->        siglas: 'IFT' },
->     puesto: { nombre: 'Subdirector', nivel: 'N31' },
->     tipoArea: [ [Object] ],
->     tipoProcedimiento: [ [Object] ],
->     nivelResponsabilidad: [ [Object] ],
->     __v: 0 } ]
->     
-> [centos@pdn-rest-api-072020 S2]$
-
-Hasta este punto hemos ejecutado la aplicación para el sistema S2 "Servidores Públicos en contrataciones" y la información está siendo guardada en MongoDB, en una base de datos llamada "S2_contrataciones" bajo la colección "spic", estos parámetros son definidos en el código cuya explicación la podrás encontrar en los siguientes apartados.
-
-
-Como resumen, nosotros llevamos a cabo las siguientes actividades.
-
-Creamos un espacio de trabajo donde correrá la aplicación, este espacio es transparente para el equipo de TXM Global, cada dependencia puede elegir el directorio deseado.
-
-Creamos el archivo de configuración donde se almacenan las dependencias.
-
-Almacenamos las dependencias necesarias para poder escribir en la base de datos.
-
-Ejecutamos la aplicación para crear personas ficticias en MongoDb.
-
-
-### Importando Infraestructura ###
-
-En el bloque anterior, se **creó** el esqueleto de la aplicación, en este mostraremos cómo **importarlo**  siendo esto una opción extra.
-
-Como primer paso debemos copiar todo el contenido de **.../schemasPDN_S2** dentro del espacio de trabajo que hayamos seleccionado.
-
-    cp .../schemasPDN_S2/* /var/opt/apps/piloto_generador/S2/
-
-Nos localizamos en el directorio para luego ejecutar la aplicación.
-
- `cd /var/opt/apps/piloto_generador/S2`
-
-    node createDataS2.js 2
-
-De esta forma ya estaremos guardando información en la base de datos para el sistema S2.
-
-
-
-### Notas ###
-
-Cualquiera que sea la elección del usuario, ya sea crear la estructura o importarla, es crucial recalcar que los pasos descritos anteriormente son solo para el sistema S2 y como ya se mencionó, en este repositorio hay una carpeta para cada sistema por lo que el usuario deberá crear 3 espacios de trabajo en su servidor local, por ejemplo
-
-**/var/opt/apps/piloto_generador/S2**  para el sistema S2 (como en los ejemplos anteriores)
-
-**/var/opt/apps/piloto_generador/S3.1** para el sistema S3.1
-
-**/var/opt/apps/piloto_generador/S3.2** para el sistema S3.2
-
-Los pasos a seguir son exactamente los mismos, solo varía el  nombre del espacio de trabajo o path y la carpeta de este repositorio.
-
-
+```
+cd /var/opt/apps/piloto_generador/
+express S3_Publicos
+cd /var/opt/apps/piloto_generador/S3_Publicos
+sudo npm install -save mongoose
+sudo npm install -save dotenv
+touch models.js
+touch db_conf.js
+touch createDataS3_Particulares.js
+touch sample_data.js
+```
 
 ## Código NodeJS
 
@@ -225,13 +104,13 @@ En este archivo vamos a especificar los parámetros de conexión a la base de da
 
 
 > PORT=3000
-> 
+>
 > MONGODB_HOST=ipDondeSeInstaloMongoDB
-> 
+>
 > MONGODB_PORT=puertoDefault27017
-> 
+>
 > MONGODB_USER=usuariodeMongoDB
-> 
+>
 > MONGODB_PASSWORD=passwordMongoDB
 
 ### db_conf.js ###
@@ -246,24 +125,24 @@ La dependencia permite el uso del fichero **.env** para crear los parámetros de
 > const host = process.env.MONGODB_HOST;
 
 > const port = process.env.MONGODB_PORT;
-> 
+>
 > const user = process.env.MONGODB_USER;
-> 
+>
 > const password = process.env.MONGODB_PASSWORD;
 
 > const url = 'mongodb://${credentials}${host}:${port}';
-> 
+>
 > const client_options = {
->    useUnifiedTopology: true,
->    useNewUrlParser: true
+> useUnifiedTopology: true,
+> useNewUrlParser: true
 > };
 
 Posteriormente exporta los parámetros que se crearon para que puedan ser utilizados por otras instancias de nodeJS
-> 
+>
 > module.exports = {
->      url,
->      client_options
->   };
+>   url,
+>   client_options
+> };
 
 
 
@@ -295,7 +174,7 @@ sampleData cuenta con funciones que "eligen" un valor de cada "campo" de forma a
 El resultado de estas funciones es exportado para poder ser utilizado por otras instancias de nodeJS.
 
 ### createDataS2.js , createDataS3_Particulares.js y ###
-### createDataS3_Publicos###
+### createDataS3_Publicos
 
 
 Estos son los ficheros que ejecutan la aplicación completa, uno por cada sistema.
@@ -307,6 +186,25 @@ Al requerir
 estamos indicando que usaremos el **esquema diseñado en models.js** para insertar información en la base de datos definida por los **parámetros de conexión que se exportaron desde db_conf.js** mediante documentos que fueron creados a partir de los **valores establecidos en sampleData.js** .
 
 Es así como todos los archivos de la estructura se relacionan para lograr el objetivo de generar datos aleatorios y poblar el DWH.
+
+
+
+## **Ejecutando Generador**
+
+Para ejecutar el generador de datos solo necesitamos especificar el sistema y número de documentos a crear.
+
+```
+cd /var/opt/apps/piloto_generador/S2
+node createDataS2.js 3 
+
+cd /var/opt/apps/piloto_generador/S3_Particularesnode 
+createDataS3_Particulares.js 3
+
+cd /var/opt/apps/piloto_generador/S3_Publicos
+node createDataS3_Publicos.js 3
+```
+
+
 
 
 ## Preguntas Frecuentes
@@ -335,5 +233,3 @@ sustituye en la variable "*mongoDB*" los datos de tu instancia.
 
 
 Si el problema persiste contacta al personal de soporte.
-
-
