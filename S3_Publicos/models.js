@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
  
-let spicSchema = new Schema({
+let ssancionadosSchema = new Schema({
    fechaCaptura: String,
    expediente: String,
    institucionDependencia: {
@@ -49,9 +49,9 @@ let spicSchema = new Schema({
    observaciones:String
     });
  
-let Spic = model('Spic', spicSchema, 'spic');
+let Ssancionados = model('Ssancionados', ssancionadosSchema, 'ssancionados');
  
 module.exports = {
-   spicSchema,
-   Spic
+   ssancionadosSchema,
+   Ssancionados
 };

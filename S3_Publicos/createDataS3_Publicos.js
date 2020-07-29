@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Spic } = require('./models');
+const { Ssancionados } = require('./models');
 const { url, client_options } = require('./db_conf');
 const {
    getNamesGender,
@@ -84,7 +84,7 @@ data = data.map((d) => {
    return d;
 });
 
-Spic.insertMany(data)
+Ssancionados.insertMany(data)
    .then((d) => {
        console.log(d);
        mongoose.disconnect();

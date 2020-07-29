@@ -9,6 +9,8 @@
   "author": "TXM Global",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+
     "dotenv": "^8.2.0",
     "mongoose": "^5.9.24"
   }

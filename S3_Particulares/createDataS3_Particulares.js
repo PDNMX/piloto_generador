@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Spic } = require('./models');
+const { Psancionados } = require('./models');
 const { url, client_options } = require('./db_conf');
 const {
   randomChoice,
@@ -127,7 +127,7 @@ data = data.map((d) => {
    return d;
 });
 
-Spic.insertMany(data)
+Psancionados.insertMany(data)
    .then((d) => {
        console.log(d);
        mongoose.disconnect();
