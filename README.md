@@ -23,10 +23,10 @@ MongoDB 4.2
 Express 4.16.1*
 Mongoose 5.9.22
 
-## **Creando Infraestructura** 
+## **Creando Aplicación** 
 
 Este apartado tiene como objetivo mostrar los pasos a seguir para crear la infraestructura de la aplicación desde cero (directorios, dependencias, comandos asociados, etc) para su ejecución en un ambiente de desarrollo.
-Se usan tres proyectos: uno para S2, uno para S3.1 y uno más para S3.2. Cada proyecto estará generando información que será almacenada en diferentes bases de datos y en una colección con el mismo nombre, por lo tanto, los pasos aquí descritos deberán ejecutarse en su totalidad para cada sistema/proyecto.
+Se usan tres proyectos, S2, S3_Servidores y S3_Particulares para los sistemas S2, S3.1 y S3.2 respectivamente. Cada proyecto estará generando información que será almacenada en su propia base de datos, dentro de una colección, por lo tanto, los pasos aquí descritos deberán ejecutarse en su totalidad para cada sistema/proyecto.
 Los detalles de cada instrucción y explicación del código se pueden encontrar en la documentación oficial de la aplicación.
 
 ### Sistema S2 Servidores Públicos en Contrataciones
@@ -35,16 +35,19 @@ Como primera instancia, se debe trabajar sobre el directorio donde se creará el
 
 `cd /var/opt/apps/piloto_generador/`
 
-El siguiente paso será  crear la base de la aplicación y un archivo llamado package.json que va a contener las dependencias que necesitaremos conforme vayamos agregando funcionalidades, entre ellas la de la base de datos para que la aplicación pueda ejecutar operaciones de Create, Retrieve, Update, y Delete (CRUD) y una más para poder usar variables de ambiente. 
+El siguiente paso será crear la base de la aplicación y un archivo llamado package.json que va a contener las dependencias que necesitaremos conforme vayamos agregando funcionalidades, entre ellas la de la base de datos para que la aplicación pueda ejecutar operaciones de Create, Retrieve, Update, y Delete (CRUD) y una más para poder usar variables de ambiente.
 
 	express S2
 	cd /var/opt/apps/piloto_generador/S2
 	sudo npm install -save mongoose
 	sudo npm install -save dotenv
-	
-	
 
-Una vez agregadas las dependencias iremos añadiendo los archivos que conforman la arquitectura base.
+
+​	
+
+Verificamos que las dependencias hayan sido agregadas a package.json, además de asegurarnos de esto, también es necesario resaltar que la versión mostrada en este fichero puede cambiar.
+
+Una vez agregada las dependencias iremos añadiendo los archivos que conforman la arquitectura base.Los siguientes pasos se realizan utilizando la consola, sin embargo se pueden realizar utilizando algún IDE de desarrollo como WebStorm, Visual Code Studio, Atom, etc. 
 
     cd /var/opt/apps/piloto_generador/S2
     touch models.js
@@ -54,13 +57,31 @@ Una vez agregadas las dependencias iremos añadiendo los archivos que conforman 
 
 El contenido de cada modulo de la arquitectura se establece en el código de este repositorio.
 
-### **Sistema S3.2 Particulares Sancionados**
+### **Sistema S3.1 Servidores Públicos Sancionados**
 
-Recordemos que para el sistema S2 habíamos creado un espacio de trabajo en
+Para la creación del sistema S3.1 se replicarán los pasos del sistema S2, por lo tanto solo se colocarán los comandos correspondientes al sistema S3.1 que se muestran a continuación
 
-`/var/opt/apps/piloto_generador/S2`
+```
+cd /var/opt/apps/piloto_generador/
+express S3_Publicos
+cd /var/opt/apps/piloto_generador/S3_Servidores
+sudo npm install -save mongoose
+sudo npm install -save dotenv
 
-Ahora crearemos uno más para Sancionados.
+touch models.js
+touch db_conf.js
+touch createDataS3_Publicos.js
+touch sample_data.js
+
+```
+
+Se replican los pasos del sistema S2, cada archivo ".js" debe contener lo mismo que su análogo en este repositorio
+
+
+
+### **Sistema S3.2 Servidores Particulares Sancionados**
+
+Ahora crearemos un espacio de trabajo para el sistema S3.2 Particulares Sancionados.
 
 ```
 cd /var/opt/apps/piloto_generador
@@ -68,28 +89,8 @@ express S3_Particulares
 cd /var/opt/apps/piloto_generador/S3_Particulares
 sudo npm install -save mongoose
 sudo npm install -save dotenv
-```
 
-Dentro de este directorio replicaremos los pasos en el bloque del sistema S2.
 
-```
-cd /var/opt/apps/piloto_generador/S3_Particulares
-touch models.js
-touch db_conf.js
-touch createDataS3_Particulares.js
-touch sample_data.js
-```
-
-### **Sistema S3.1 Servidores públicos Sancionados**
-
-Por último crearemos y nos moveremos al espacio de trabajo elegido para S3.1 y llevaremos a cabo la misma rutina
-
-```
-cd /var/opt/apps/piloto_generador/
-express S3_Publicos
-cd /var/opt/apps/piloto_generador/S3_Publicos
-sudo npm install -save mongoose
-sudo npm install -save dotenv
 touch models.js
 touch db_conf.js
 touch createDataS3_Particulares.js
@@ -195,13 +196,14 @@ Para ejecutar el generador de datos solo necesitamos especificar el sistema y n�
 
 ```
 cd /var/opt/apps/piloto_generador/S2
-node createDataS2.js 3 
+node createDataS2.js 10
+ 
+cd /var/opt/apps/piloto_generador/S3_Servidores
+node createDataS3_Publicos.js 10
 
-cd /var/opt/apps/piloto_generador/S3_Particularesnode 
-createDataS3_Particulares.js 3
+cd /var/opt/apps/piloto_generador/S3_Particulares
+node createDataS3_Particulares.js 10
 
-cd /var/opt/apps/piloto_generador/S3_Publicos
-node createDataS3_Publicos.js 3
 ```
 
 
@@ -209,7 +211,7 @@ node createDataS3_Publicos.js 3
 
 ## Preguntas Frecuentes
 
-* ¿Cómo agrego un "campo" | "atributo" | "columna" extra en una colección?
+* ¿Cómo agrego un "campo" | "atributo" | "columna" en una colección?
 
 El campo debe ser añadido a **models.js** y **sample_data.js** del sistema correspondiente (S2, S3.1 o S3.2) para que sea parte del esquema y pueda ser insertado en la base de datos, también es importante incluirlo en el ejecutable de cada sistema(**createData.js**) como *"const"* y agregarlo al *"data.push"* de este mismo fichero.
 
