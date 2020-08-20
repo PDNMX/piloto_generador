@@ -73,38 +73,70 @@ const entities = [
 
 
 const typePenalty = [
-{ clave: "NAD", valor: "NEGLIGENCIA ADMINISTRATIVA" },
-  { clave: "VPC", valor: "VIOLACION PROCEDIMIENTOS DE CONTRATACION" },
-  { clave: "VLNP", valor: "VIOLACION LEYES Y NORMATIVIDAD PRESUPUESTAL" },
-  { clave: "AUT", valor: "ABUSO DE AUTORIDAD" },
-  { clave: "CEX", valor: "COHECHO O EXTORSION" },
-  { clave: "IDSP", valor: "INCUMPLIMIENTO EN DECLARACION DE SITUACION PATRIMONIAL"},
-  { clave: "DCSP", valor: "DELITO COMETIDO POR SERVIDORES PUBLICOS" },
-  { clave: "EIFM", valor: "EJERCICIO INDEBIDO DE SUS FUNCIONES EN MATERIA MIGRATORIA"},
-  { clave: "VDH", valor: "VIOLACIÓN A LOS DERECHOS HUMANOS" },
-  { clave: "AG", valor: "ADMINISTRATIVA GRAVE" },
-  { clave: "ANG", valor: "ADMINISTRATIVA NO GRAVE" },
-  { clave: "AC", valor: "ACTO DE CORRUPCIÓN" },
-  { clave: "OTRO", valor: "OTRO" }
+{ clave: "NAD", valor: "NEGLIGENCIA ADMINISTRATIVA", descripcion: "NEGLIGENCIA ADMINISTRATIVA" },
+  { clave: "VPC", valor: "VIOLACION PROCEDIMIENTOS DE CONTRATACION", descripcion: "VIOLACION PROCEDIMIENTOS DE CONTRATACION" },
+  { clave: "VLNP", valor: "VIOLACION LEYES Y NORMATIVIDAD PRESUPUESTAL", descripcion: "COLUSIÓN" },
+  { clave: "AUT", valor: "ABUSO DE AUTORIDAD", descripcion: "TRATO HUMILLANTE A UN SUBORDINADO" },
+  { clave: "CEX", valor: "COHECHO O EXTORSION", descripcion: "COHECHO O EXTORSION" },
+  { clave: "IDSP", valor: "INCUMPLIMIENTO EN DECLARACION DE SITUACION PATRIMONIAL", descripcion: "OCULTAMIENTODE PROPIEDADES"},
+  { clave: "DCSP", valor: "DELITO COMETIDO POR SERVIDORES PUBLICOS", descripcion: "ROBO" },
+  { clave: "EIFM", valor: "EJERCICIO INDEBIDO DE SUS FUNCIONES EN MATERIA MIGRATORIA", descripcion: "EJERCICIO INDEBIDO DE SUS FUNCIONES EN MATERIA MIGRATORIA"},
+  { clave: "VDH", valor: "VIOLACIÓN A LOS DERECHOS HUMANOS", descripcion: "DESALOJO FORZOSO DE PERSONAS DE SUS HOGARES" },
+  { clave: "AG", valor: "ADMINISTRATIVA GRAVE", descripcion: "ADMINISTRATIVA GRAVE" },
+  { clave: "ANG", valor: "ADMINISTRATIVA NO GRAVE", descripcion: "INCUMPLIMIENTO DE FUNCIONES" },
+  { clave: "AC", valor: "ACTO DE CORRUPCIÓN", descripcion: "RECIBIR SOBORNO POR UN TRÁMITE" },
+  { clave: "OTRO", valor: "OTRO" , descripcion: "OTRO"},
+  { clave: "HSEX", valor: "COMETER O TOLERAR CONDUCTAS DE HOSTIGAMIENTO SEXUAL", descripcion: "COMETER O TOLERAR CONDUCTAS DE HOSTIGAMIENTO SEXUAL"},
+  { clave: "ASEX", valor: "COMETER O TOLERAR CONDUCTAS DE ACOSO SEXUAL", descripcion: "COMETER O TOLERAR CONDUCTAS DE ACOSO SEXUAL" },
+  { clave: "PEC", valor: "PECULADO", descripcion: "PECULADO" },
+  { clave: "DRP", valor: "DESVÍO DE RECURSOS PÚBLICOS", descripcion: "DESVÍO DE RECURSOS PÚBLICOS" },
+  { clave: "UII", valor: "UTILIZACIÓN INDEBIDA DE INFORMACIÓN", descripcion: "UTILIZACIÓN INDEBIDA DE INFORMACIÓN" },
+  { clave: "AFN", valor: "ABUSO DE FUNCIONES" , descripcion: "ABUSO DE FUNCIONES"},
+  { clave: "ABCI", valor: "ACTUACIÓN BAJO CONFLICTO DE INTERÉS", descripcion: "ACTUACIÓN BAJO CONFLICTO DE INTERÉS"},
+  { clave: "CIND", valor: "CONTRATACIÓN INDEBIDA", descripcion: "CONTRATACIÓN INDEBIDA" },
+  { clave: "EOCI", valor: "ENRIQUECIMIENTO OCULTO U OCULTAMIENTO DE CONFLICTO DE INTERÉS", descripcion: "ENRIQUECIMIENTO OCULTO U OCULTAMIENTO DE CONFLICTO DE INTERÉS" },
+  { clave: "TINF", valor: "TRÁFICO DE INFLUENCIAS", descripcion: "TRÁFICO DE INFLUENCIAS" },
+  { clave: "ENCB", valor: "ENCUBRIMIENTO", descripcion: "ENCUBRIMIENTO" },
+  { clave: "DSCT", valor: "DESACATO" , descripcion: "DESACATO"},
+  { clave: "OJUST", valor: "OBSTRUCCIÓN DE LA JUSTICIA" , descripcion: "OBSTRUCCIÓN DE LA JUSTICIA"}
 ];
 
 const typeSanction = [
    {
        clave: 'I',
-       valor: 'INHABILITADO'
+       valor: 'INHABILITADO',
+       descripcion:''
    },
    {
        clave: 'M',
-       valor: 'MULTADO'
+       valor: 'MULTADO',
+       descripcion:''
    },
     {
        clave: 'S',
-       valor: 'SUSPENSION DE EMPLEO, CARGO O COMISION'
+       valor: 'SUSPENSION DE EMPLEO, CARGO O COMISION',
+       descripcion:''
    },
    {
        clave: 'D',
-       valor: 'DESTITUCION DEL EMPLEO CARGO O COMISION'
-   }
+       valor: 'DESTITUCION DEL EMPLEO CARGO O COMISION',
+       descripcion:'DESPIDO'
+   },
+   {
+         clave: 'O',
+         valor: 'OTRO',
+         descripcion:'LEVANTAMIENTO DE ACTA ADMINISTRATIVA'
+   },
+  {
+         clave: 'IRSC',
+         valor: 'INDEMNIZACIÓN RESARCITORIA',
+         descripcion:''
+  },
+  {
+         clave: 'SE',
+         valor: 'SANCIÓN ECONÓMICA',
+         descripcion:''
+  }
 ];
 
 

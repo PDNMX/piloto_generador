@@ -103,24 +103,44 @@ const entities = [
 const typeSanction = [
    {
        clave: 'I',
-       valor: 'INHABILITADO'
+       valor: 'INHABILITADO',
+       descripcion: 'INHABILITADO'
    },
    {
        clave: 'M',
-       valor: 'MULTADO'
+       valor: 'MULTADO',
+       descripcion:'MULTADO'
    },
     {
        clave: 'S',
-       valor: 'SUSPENSIÓN DE ACTIVIDADES'
+       valor: 'SUSPENSIÓN DE ACTIVIDADES',
+       descripcion: 'SUSPENSIÓN DE ACTIVIDADES'
    },
    {
         clave: 'D',
-        valor: 'DISOLUCIÓN DE LA SOCIEDAD'
+        valor: 'DISOLUCIÓN DE LA SOCIEDAD',
+        descripcion: 'DISOLUCIÓN DE LA SOCIEDAD'
    },
    {
        clave: 'A',
-       valor: 'AMONESTACIÓN'
-   }
+       valor: 'AMONESTACIÓN',
+       descripcion: 'AMONESTACIÓN'
+   },
+   {
+       clave: 'IND',
+       valor: 'INDEMNIZACIÓN POR LOS DAÑOS Y PERJUICIOS OCASIONADOS A LA HACIENDA PÚBLICA FEDERAL, LOCAL O MUNICIPAL, O AL PATRIMONIO DE LOS ENTES PÚBLICOS',
+       descripcion :'INDEMNIZACIÓN'
+   },
+   {
+       clave: 'SE',
+       valor: 'SANCIÓN ECONÓMICA',
+       descripcion: 'SANCIÓN ECONÓMICA'
+   },
+   {
+       clave: 'O',
+       valor: 'OTRO',
+       descripcion : 'OTRO'
+   },
 ];
 
 const typeDocument = [

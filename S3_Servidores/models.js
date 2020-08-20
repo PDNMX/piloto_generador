@@ -25,7 +25,8 @@ let ssancionadosSchema = new Schema({
    autoridadSancionadora: String,
    tipoFalta: {
             clave: String,
-            valor: String
+            valor: String,
+            descripcion: String
     },
    tipoSancion: { type: [], default: void 0 },
    causaMotivoHechos: String,
