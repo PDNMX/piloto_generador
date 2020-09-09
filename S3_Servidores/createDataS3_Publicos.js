@@ -16,7 +16,10 @@ const {
    getPosition,
    getAuthority,
    getDates,
-   getInhabilitado
+   getInhabilitado,
+   getDays,
+   getMonths,
+   getYears
 
 } = require('./sample_data');
 
@@ -41,14 +44,13 @@ let data = [];
 for (let i = 0; i < nrows; i++) {
    const ng = getNamesGender();
    const puesto = getPosition();
+   const date = getDates();
+
 
    
     data.push({
       fechaCaptura: new Date().toISOString(),
       expediente:getNumExp(),
-     // nombres: ng.name,
-     // primerApellido: getLastName(),
-     // segundoApellido: getLastName(),
       institucionDependencia: getEntity(),
       servidorPublicoSancionado:{
         nombres:ng.name,
@@ -67,7 +69,7 @@ for (let i = 0; i < nrows; i++) {
        resolucion:
            {
             url: ' ',
-            fechaResolucion:getDates()
+            fechaResolucion:new Date(Date.UTC(getYears(), getMonths(), getDays(), 2, 3, 0)).toISOString()
            },
        multa:getPenaltyFee(),
        inhabilitacion:getInhabilitado(),

@@ -89,7 +89,7 @@ let psancionadosSchema = new Schema({
    },
    documentos: { type: [], default: void 0 },
    multa:{
-    monto: String,
+    monto: Number,
     moneda: {
         clave:String,
         valor:String

@@ -8,10 +8,11 @@ const dbName = process.env.MONGODB_DBNAME;
 let credentials = '';
  
 if (typeof user !== 'undefined' && user !== '') {
-   credentials = `${user}:${password}@`;
+   credentials = user + ':' + password + '@';
 }
 const url = 'mongodb://' + credentials + host + ':' + port + '/' + dbName ;
 //const url = 'mongodb://' + host + ':' + port + '/' + dbName;
+console.log('connecting to: ...', url);
 const client_options = {
    useUnifiedTopology: true,
    useNewUrlParser: true

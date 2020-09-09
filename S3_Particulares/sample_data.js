@@ -1,3 +1,35 @@
+const getRandomIntInclusive = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+};
+
+
+const years = [
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99
+];
+
+const months = [
+    10,
+    11,
+    12
+];
+
+const days = [
+    10,
+    11,
+    12,
+    13,14,15,16
+];
+
 const names = [
    {
        name: 'Alejandra Alvarado Castro',
@@ -11,7 +43,7 @@ const names = [
        socialObject:' '
    },
    {
-       name: 'Francisco Javier Sánchez Mariscal',
+       name: 'Francisco Javier Sanchez Mariscal',
        typePerson:'F',
        socialObject:' '
    },
@@ -150,7 +182,8 @@ const typeDocument = [
    titulo:'RESOLUCION',
    descripcion:' ',
    url:' ',
-   fecha:'2020-04-21T13:13:55.448Z'
+      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
+          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
   },
   {
    tipo: 'CONSTANCIA_SANCION',
@@ -158,7 +191,8 @@ const typeDocument = [
    titulo:'CONSTANCIA_SANCION',
    descripcion:' ',
    url:' ',
-   fecha:'2019-09-21T14:06:55.448Z'
+      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
+          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
   },
   {
    tipo: 'CONSTANCIA_INHABILITACION',
@@ -166,7 +200,8 @@ const typeDocument = [
    titulo:'CONSTANCIA_INHABILITACION',
    descripcion:' ',
    url:' ',
-   fecha:'2020-07-12T17:22:55.448Z'
+      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
+          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
   },
   {
    tipo: 'CONSTANCIA_ABSTENCION',
@@ -174,7 +209,8 @@ const typeDocument = [
    titulo:'CONSTANCIA_ABSTENCION',
    descripcion:' ',
    url:' ',
-   fecha:'2018-02-19T20:10:29.448Z'
+      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
+          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
   }
   ];
 
@@ -251,10 +287,10 @@ const numbers = [
 
 
 const penalty_fee = [
-   { monto: '23596.00', moneda:{clave:'USD',valor:'Dolar estadounidense'}},
-   { monto: '256.00',  moneda:{clave:'USD',valor:'Dolar estadounidense'}},
-   { monto: '8945.00', moneda:{clave:'MXN',valor:'Peso mexicano'}},
-   { monto: '21577.00', moneda:{clave:'MXN',valor:'Peso mexicano'}}
+   { monto:23596.00, moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: 256.00,  moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: 8945.00, moneda:{clave:'MXN',valor:'Peso mexicano'}},
+   { monto: 21577.00, moneda:{clave:'MXN',valor:'Peso mexicano'}}
 ];
 
 const telephone = [
@@ -297,11 +333,7 @@ const dates = [
   '2015-06-02T20:34:00.353Z'
 ];
 
-const getRandomIntInclusive = (min, max) => {
-   min = Math.ceil(min);
-   max = Math.floor(max);
-   return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
-};
+
 
 
 const rfc = (person) => {
@@ -378,6 +410,9 @@ const getFaulttype = () => randomChoice(faulttype);
 const getNumbers = () => randomChoice(numbers);
 const getAuthority = () => randomChoice(authority);
 const getDates = () => randomChoice(dates);
+const getYears = () => randomChoice(years);
+const getMonths = () => randomChoice(months);
+const getDays = () => randomChoice(days);
 
 
 module.exports = {
@@ -399,7 +434,10 @@ module.exports = {
    getNumbers,
    getAuthority,
    getCountries,
-   getDates
+   getDates,
+    getYears,
+    getMonths,
+    getDays
 };
 
 
