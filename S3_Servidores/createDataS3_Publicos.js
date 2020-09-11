@@ -17,9 +17,7 @@ const {
    getAuthority,
    getDates,
    getInhabilitado,
-   getDays,
-   getMonths,
-   getYears
+
 
 } = require('./sample_data');
 
@@ -69,7 +67,7 @@ for (let i = 0; i < nrows; i++) {
        resolucion:
            {
             url: ' ',
-            fechaResolucion:new Date(Date.UTC(getYears(), getMonths(), getDays(), 2, 3, 0)).toISOString()
+            fechaResolucion:getDates()
            },
        multa:getPenaltyFee(),
        inhabilitacion:getInhabilitado(),

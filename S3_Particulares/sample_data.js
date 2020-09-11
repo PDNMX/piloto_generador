@@ -5,31 +5,6 @@ const getRandomIntInclusive = (min, max) => {
 };
 
 
-const years = [
-    91,
-    92,
-    93,
-    94,
-    95,
-    96,
-    97,
-    98,
-    99
-];
-
-const months = [
-    10,
-    11,
-    12
-];
-
-const days = [
-    10,
-    11,
-    12,
-    13,14,15,16
-];
-
 const names = [
    {
        name: 'Alejandra Alvarado Castro',
@@ -182,8 +157,7 @@ const typeDocument = [
    titulo:'RESOLUCION',
    descripcion:' ',
    url:' ',
-      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
-          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
+   fecha: '2020-02-09'
   },
   {
    tipo: 'CONSTANCIA_SANCION',
@@ -191,8 +165,7 @@ const typeDocument = [
    titulo:'CONSTANCIA_SANCION',
    descripcion:' ',
    url:' ',
-      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
-          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
+      fecha: '2010-04-02'
   },
   {
    tipo: 'CONSTANCIA_INHABILITACION',
@@ -200,8 +173,7 @@ const typeDocument = [
    titulo:'CONSTANCIA_INHABILITACION',
    descripcion:' ',
    url:' ',
-      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
-          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
+      fecha: '2018-07-15'
   },
   {
    tipo: 'CONSTANCIA_ABSTENCION',
@@ -209,8 +181,7 @@ const typeDocument = [
    titulo:'CONSTANCIA_ABSTENCION',
    descripcion:' ',
    url:' ',
-      fecha: new Date(Date.UTC(getRandomIntInclusive(70, 99), getRandomIntInclusive(1, 12),
-          getRandomIntInclusive(1, 28), 2, 3, 0)).toISOString()
+      fecha: '2020-03-02'
   }
   ];
 
@@ -287,10 +258,10 @@ const numbers = [
 
 
 const penalty_fee = [
-   { monto:23596.00, moneda:{clave:'USD',valor:'Dolar estadounidense'}},
-   { monto: 256.00,  moneda:{clave:'USD',valor:'Dolar estadounidense'}},
-   { monto: 8945.00, moneda:{clave:'MXN',valor:'Peso mexicano'}},
-   { monto: 21577.00, moneda:{clave:'MXN',valor:'Peso mexicano'}}
+   { monto:23596.30, moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: 256.60,  moneda:{clave:'USD',valor:'Dolar estadounidense'}},
+   { monto: 8945.99, moneda:{clave:'MXN',valor:'Peso mexicano'}},
+   { monto: 21577.10, moneda:{clave:'MXN',valor:'Peso mexicano'}}
 ];
 
 const telephone = [
@@ -323,14 +294,14 @@ const authority = [
 ];
 
 const dates = [
-  '2020-01-08T10:15:14.824Z',
-  '2019-07-19T22:44:00.353Z',
-  '2020-02-13T12:19:14.824Z',
-  '2002-04-02T20:34:00.353Z',
-  '2020-10-08T10:15:14.824Z',
-  '2004-08-19T22:44:00.353Z',
-  '2012-02-13T12:19:14.824Z',
-  '2015-06-02T20:34:00.353Z'
+    '2020-01-08',
+    '2019-07-19',
+    '2020-02-13',
+    '2002-04-02',
+    '2020-10-08',
+    '2004-08-19',
+    '2012-02-13',
+    '2015-06-02'
 ];
 
 
@@ -410,9 +381,7 @@ const getFaulttype = () => randomChoice(faulttype);
 const getNumbers = () => randomChoice(numbers);
 const getAuthority = () => randomChoice(authority);
 const getDates = () => randomChoice(dates);
-const getYears = () => randomChoice(years);
-const getMonths = () => randomChoice(months);
-const getDays = () => randomChoice(days);
+
 
 
 module.exports = {
@@ -435,9 +404,6 @@ module.exports = {
    getAuthority,
    getCountries,
    getDates,
-    getYears,
-    getMonths,
-    getDays
 };
 
 

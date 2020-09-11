@@ -4,11 +4,6 @@ const { Schema, model } = require('mongoose');
 let psancionadosSchema = new Schema({
    fechaCaptura: String,
    expediente: String,
-    //rfc: String,
-    //curp: String,
-    //nombres: String,
-      // primerApellido: String,
-       //segundoApellido: String,
    institucionDependencia: {
           nombre: String,
           clave: String,

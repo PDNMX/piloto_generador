@@ -21,9 +21,6 @@ const {
   getCountries,
   getAuthority,
   getDates,
-    getDays,
-    getMonths,
-    getYears
 } = require('./sample_data');
 
 let nrows = process.argv[2];
@@ -109,7 +106,7 @@ for (let i = 0; i < nrows; i++) {
        {
         sentido: 'Sancionatoria con multa',
         url: ' ',
-        fechaNotificacion:new Date(Date.UTC(getYears(), getMonths(), getDays(), 2, 3, 0)).toISOString()
+        fechaNotificacion:getDates()
        },
        documentos:[getTypeDocuments()],
        multa:getPenaltyFee(),
