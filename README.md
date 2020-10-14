@@ -2,7 +2,7 @@
 ## Introducción
 Este generador de datos sintéticos piloto desarrollado en NodeJS, genera información aleatoria sobre Servidores Públicos en Contrataciones, Particulares Sancionados y Servidores Públicos Sancionados que alimenta una base de datos montada sobre MongoDB. Esta información es producida de acuerdo con esquemas definidos a través del catálogo de datos de la Plataforma Digital Nacional (PDN) que posteriormente serán consultados por medio de API's.
 
-El usuario podrá guardar información en la base de datos que él mismo defina, únicamente dando como parámetro de entrada el nombre del sistema en cuestión y el número de documentos a crear.
+El usuario podrá guardar información en la base de datos MongoDB que él mismo defina, únicamente dando como parámetro de entrada el nombre del sistema en cuestión y el número de documentos a crear.
 
 El proyecto ha sido desarrollado sobre las siguientes versiones de sus componentes:
 * NodeJS v12.18.2
