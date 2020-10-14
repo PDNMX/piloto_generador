@@ -1,237 +1,28 @@
 # Generador de Datos S2, S3.1, S3.2
-
-## Funcionalidad 
-
+## Introducción
 Este generador de datos sintéticos piloto desarrollado en NodeJS, genera información aleatoria sobre Servidores Públicos en Contrataciones, Particulares Sancionados y Servidores Públicos Sancionados que alimenta una base de datos montada sobre MongoDB. Esta información es producida de acuerdo con esquemas definidos a través del catálogo de datos de la Plataforma Digital Nacional (PDN) que posteriormente serán consultados por medio de API's.
 
 El usuario podrá guardar información en la base de datos que él mismo defina, únicamente dando como parámetro de entrada el nombre del sistema en cuestión y el número de documentos a crear.
 
-## Pre - requisitos
+El proyecto ha sido desarrollado sobre las siguientes versiones de sus componentes:
+* NodeJS v12.18.2
+* NPM 6.14.5
+* MongoDB 4.2
+* Express 4.16.1*
+* Mongoose 5.9.22
 
-Versión estable SLP (soporte de largo-plazo) de NodeJs y NPM previamente instalados, si no se cuenta con ellos puede descargarlos del siguiente enlace [Aquí](https://nodejs.org/en/download/).
-MongoDB Previamente instalado y configurado. Se asume que el usuario conoce ya las credenciales asignadas a la base de datos, esta información es indispensable. 
-Se recomienda haber leído este documento en su totalidad antes de replicar el generador de datos de manera local.
+Este proyecto forma parte de una solución que contempla las APIs del S2 y S3 en ambiente de desarrollo, para reproducirlo completamente, se sugiere el siguiente orden:
+* [Instalación](https://docs.google.com/document/d/1aQ0_f3sGiyE94anGy2pwOFn6KLucYTc3ZkrWM8rikIo/edit?usp=sharing): preparación del ambiente de desarrollo.
+* [Generador](https://github.com/PDNMX/piloto_generador): generador de datos sintéticos para el S2 y S3. 
+* [OAuth2.0](https://github.com/PDNMX/piloto_oauth2.0): implementación del protocolo de autorización.
+* [API S2](https://github.com/PDNMX/piloto_s2): API para conectarse a la PDN en el Sistema 2. 
+* [API S3S](https://github.com/PDNMX/piloto_s3s): API para conectarse a la PDN en el Sistema 3 Servidores sancionados.
+* [API S3P](https://github.com/PDNMX/piloto_s3p): API para conectarse a la PDN en el Sistema 3 Particulares Sancionados. 
 
 
-Especificaciones Técnicas 
+## Documentación
 
-El piloto ha sido desarrollado sobre las siguientes versiones de sus componentes:
+* [Documentación Generador](https://docs.google.com/document/d/16Lct0jfrzJ02pdWvW-x8oOfnhTyyZqk93xE2OwzzerI/edit?usp=sharing)
+* [Documentación completa](https://drive.google.com/drive/folders/1aQLhmtKwbWiTy20Ei9k-zy6hneUuYTn2?usp=sharing)
 
-NodeJS v12.18.2
-NPM 6.14.5
-MongoDB 4.2
-Express 4.16.1*
-Mongoose 5.9.22
 
-## **Creando Aplicación** 
-
-Este apartado tiene como objetivo mostrar los pasos a seguir para crear la infraestructura de la aplicación desde cero (directorios, dependencias, comandos asociados, etc) para su ejecución en un ambiente de desarrollo.
-Se usan tres proyectos, S2, S3_Servidores y S3_Particulares para los sistemas S2, S3.1 y S3.2 respectivamente. Cada proyecto estará generando información que será almacenada en su propia base de datos, dentro de una colección, por lo tanto, los pasos aquí descritos deberán ejecutarse en su totalidad para cada sistema/proyecto.
-Los detalles de cada instrucción y explicación del código se pueden encontrar en la documentación oficial de la aplicación.
-
-### Sistema S2 Servidores Públicos en Contrataciones
-
-Como primera instancia, se debe trabajar sobre el directorio donde se creará el generador de datos que almacenará información del sistema S2, el equipo de TXM Global ha elegido determinado path como espacio de trabajo, sin embargo, el usuario puede elegir el que mejor le convenga, en este documento se maneja el siguiente directorio para efecto de demostración:	
-
-`cd /var/opt/apps/piloto_generador/`
-
-El siguiente paso será crear la base de la aplicación y un archivo llamado package.json que va a contener las dependencias que necesitaremos conforme vayamos agregando funcionalidades, entre ellas la de la base de datos para que la aplicación pueda ejecutar operaciones de Create, Retrieve, Update, y Delete (CRUD) y una más para poder usar variables de ambiente.
-
-	express S2
-	cd /var/opt/apps/piloto_generador/S2
-	sudo npm install -save mongoose
-	sudo npm install -save dotenv
-
-
-​	
-
-Verificamos que las dependencias hayan sido agregadas a package.json, además de asegurarnos de esto, también es necesario resaltar que la versión mostrada en este fichero puede cambiar.
-
-Una vez agregada las dependencias iremos añadiendo los archivos que conforman la arquitectura base.Los siguientes pasos se realizan utilizando la consola, sin embargo se pueden realizar utilizando algún IDE de desarrollo como WebStorm, Visual Code Studio, Atom, etc. 
-
-    cd /var/opt/apps/piloto_generador/S2
-    touch models.js
-    touch db_conf.js
-    touch createDataS2.js
-    touch sample_data.js
-
-El contenido de cada modulo de la arquitectura se establece en el código de este repositorio.
-
-### **Sistema S3.1 Servidores Públicos Sancionados**
-
-Para la creación del sistema S3.1 se replicarán los pasos del sistema S2, por lo tanto solo se colocarán los comandos correspondientes al sistema S3.1 que se muestran a continuación
-
-```
-cd /var/opt/apps/piloto_generador/
-express S3_Publicos
-cd /var/opt/apps/piloto_generador/S3_Servidores
-sudo npm install -save mongoose
-sudo npm install -save dotenv
-
-touch models.js
-touch db_conf.js
-touch createDataS3_Publicos.js
-touch sample_data.js
-
-```
-
-Se replican los pasos del sistema S2, cada archivo ".js" debe contener lo mismo que su análogo en este repositorio
-
-
-
-### **Sistema S3.2 Servidores Particulares Sancionados**
-
-Ahora crearemos un espacio de trabajo para el sistema S3.2 Particulares Sancionados.
-
-```
-cd /var/opt/apps/piloto_generador
-express S3_Particulares
-cd /var/opt/apps/piloto_generador/S3_Particulares
-sudo npm install -save mongoose
-sudo npm install -save dotenv
-
-
-touch models.js
-touch db_conf.js
-touch createDataS3_Particulares.js
-touch sample_data.js
-```
-
-## Código NodeJS
-
-### .env ###
-
-En este archivo vamos a especificar los parámetros de conexión a la base de datos que deben ser modificados por el usuario reemplazándolos por la información correcta del servidor y base de datos donde correrá la aplicación 
-
-
-> PORT=3000
->
-> MONGODB_HOST=ipDondeSeInstaloMongoDB
->
-> MONGODB_PORT=puertoDefault27017
->
-> MONGODB_USER=usuariodeMongoDB
->
-> MONGODB_PASSWORD=passwordMongoDB
-
-### db_conf.js ###
-
-Este archivo utiliza la dependencia **dotenv** que se instaló al crear la infraestructura o bien, que se importó junto con ella. 
-
-> require('dotenv').config()
-
-
-La dependencia permite el uso del fichero **.env** para crear los parámetros de conexión a la base de datos en la sintaxis que  la herramienta *mongoose* comprende.
-
-> const host = process.env.MONGODB_HOST;
-
-> const port = process.env.MONGODB_PORT;
->
-> const user = process.env.MONGODB_USER;
->
-> const password = process.env.MONGODB_PASSWORD;
-
-> const url = 'mongodb://${credentials}${host}:${port}';
->
-> const client_options = {
-> useUnifiedTopology: true,
-> useNewUrlParser: true
-> };
-
-Posteriormente exporta los parámetros que se crearon para que puedan ser utilizados por otras instancias de nodeJS
->
-> module.exports = {
->   url,
->   client_options
-> };
-
-
-
-### models.js ###
-
-models.js fue creado para definir los esquemas de cada sistema y poder guardar la información de acuerdo al catálogo de la PDN.
-Se está utilizando mongoose como herramienta para insertar documentos en mongoDB por lo tanto la definición de estos esquemas es prioritaria.
-
-Las líneas de código más importantes en models.js se explican a continuación.
-
-
-> const { Schema, model } = require('mongoose');
-
-Es la primera línea, indica que estaremos usando mongoose como herramienta para añadir información a la base de datos bajo un esquema definido. 
-
-> let Spic = model('Spic', spicSchema,'spic');
-
-En esta línea se define el nombre de la colección donde vamos a almacenar los documentos creados, esta instrucción es la misma para cada sistema dado que almacenaremos la información en la misma colección pero en una base de datos diferente.
-
- 
-
-Información técnica más específica sobre mongoose se puede encontrar  [Aquí](https://mongoosejs.com/docs/models.html).
-
-### sampleData.js ###
-
-Este fichero contiene valores para cada elemento del esquema que se definió en *models.js* sirve como plantilla de donde se irán tomando datos para poblar la colección correspondiente.
-sampleData cuenta con funciones que "eligen" un valor de cada "campo" de forma aleatoria para ir formando los documentos/registros que se almacenarán en MongoDB.
-
-El resultado de estas funciones es exportado para poder ser utilizado por otras instancias de nodeJS.
-
-### createDataS2.js , createDataS3_Particulares.js y ###
-### createDataS3_Publicos
-
-
-Estos son los ficheros que ejecutan la aplicación completa, uno por cada sistema.
-
-Al requerir 
-
- *models.js* , *db_conf.js*  y *sampleData.js* 
-
-estamos indicando que usaremos el **esquema diseñado en models.js** para insertar información en la base de datos definida por los **parámetros de conexión que se exportaron desde db_conf.js** mediante documentos que fueron creados a partir de los **valores establecidos en sampleData.js** .
-
-Es así como todos los archivos de la estructura se relacionan para lograr el objetivo de generar datos aleatorios y poblar el DWH.
-
-
-
-## **Ejecutando Generador**
-
-Para ejecutar el generador de datos solo necesitamos especificar el sistema y número de documentos a crear.
-
-```
-cd /var/opt/apps/piloto_generador/S2
-node createDataS2.js 10
- 
-cd /var/opt/apps/piloto_generador/S3_Servidores
-node createDataS3_Publicos.js 10
-
-cd /var/opt/apps/piloto_generador/S3_Particulares
-node createDataS3_Particulares.js 10
-
-```
-
-
-
-
-## Preguntas Frecuentes
-
-* ¿Cómo agrego un "campo" | "atributo" | "columna" en una colección?
-
-El campo debe ser añadido a **models.js** y **sample_data.js** del sistema correspondiente (S2, S3.1 o S3.2) para que sea parte del esquema y pueda ser insertado en la base de datos, también es importante incluirlo en el ejecutable de cada sistema(**createData.js**) como *"const"* y agregarlo al *"data.push"* de este mismo fichero.
-
-* ¿Cómo elimino un "campo" | "atributo" | "columna" extra de una colección?
-
- Bastaría con eliminar la línea de este campo en el *"data.push"* de **createData.js** , sin embargo se recomienda también eliminar las líneas correspondientes en **models.js** y **sample_data.js**
-
-* ¿Qué pasa si no tengo conexión a MongoDB?
-
-Se recomienda revisar los logs de Mongo.
-Verificar la correcta especificación de los parámetros de conexión tanto en **.env** como en **db_conf.js** , en caso de que estos dos ficheros se encuentren correctamente configurados y aún así no logremos un resultado exitoso podemos hacer una prueba modificando el archivo **createData.js** reemplazando la línea: 
-
-> mongoose.connect(url, client_options);
-
-por:
-
-> var mongoDB = 'mongodb://txm:1234@35.226.19.219:27017'; 
-> mongoose.connect(mongoDB, { useNewUrlParser: true });
-
-sustituye en la variable "*mongoDB*" los datos de tu instancia.
-
-
-Si el problema persiste contacta al personal de soporte.
