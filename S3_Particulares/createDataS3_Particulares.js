@@ -129,10 +129,10 @@ data = data.map((d) => {
 
 Psancionados.insertMany(data)
    .then((d) => {
-       console.log(d);
+      // console.log(d);
        mongoose.disconnect();
    })
    .catch((error) => {
-       console.log(error);
+       console.log(error.message);
        mongoose.disconnect();
    });

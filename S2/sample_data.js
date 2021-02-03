@@ -141,7 +141,11 @@ const procedimientos = [
    {
        clave: 4,
        valor: 'ASIGNACIÓN Y EMISIÓN DE DICTÁMENES DE AVALÚOS NACIONALES'
-   }
+   },
+    {
+        clave: 5,
+        valor: 'OTRO'
+    }
 ];
 
 const responsabilidades = [
