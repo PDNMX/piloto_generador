@@ -9,38 +9,38 @@ const names = [
    {
        name: 'Alejandra Alvarado Castro',
        typePerson:'F',
-       socialObject:' '
+       socialObject:'Objeto social'
    },
 
    {
        name: 'Alan Alfonso Prado Infante',
        typePerson:'F',
-       socialObject:' '
+       socialObject:'Objeto social'
    },
    {
        name: 'Francisco Javier Sanchez Mariscal',
        typePerson:'F',
-       socialObject:' '
+       socialObject:'Objeto social'
    },
    {
        name: 'Clara Monsivais Estrada',
        typePerson:'F',
-       socialObject:' '
+       socialObject:'Objeto social'
    },
    {
        name: 'Andrea Fernández Solis',
        typePerson:'F',
-       socialObject:' '
+       socialObject:'Objeto social'
    },
    {
        name: 'Gaia Ortiz Carranza',
        typePerson:'F',
-       socialObject:' '
+       socialObject:'Objeto social'
    },
    {
        name: 'Tamara Alemán Castillo',
        typePerson:'F',
-       socialObject:' '
+       socialObject:'Objeto social'
    },
 
    {
@@ -155,32 +155,32 @@ const typeDocument = [
    tipo: 'RESOLUCION',
    id:'7D898J6',
    titulo:'RESOLUCION',
-   descripcion:' ',
-   url:' ',
+   descripcion:'Este es un documento',
+   url:'http://archivo.com/midoc1.pdf',
    fecha: '2020-02-09'
   },
   {
    tipo: 'CONSTANCIA_SANCION',
    id:'35SH512',
    titulo:'CONSTANCIA_SANCION',
-   descripcion:' ',
-   url:' ',
+   descripcion:'Este es un documento',
+   url:'http://archivo.com/midoc2.pdf',
       fecha: '2010-04-02'
   },
   {
    tipo: 'CONSTANCIA_INHABILITACION',
    id:'841SG8',
    titulo:'CONSTANCIA_INHABILITACION',
-   descripcion:' ',
-   url:' ',
+   descripcion:'Este es un documento',
+   url:'http://archivo.com/midoc3.pdf',
       fecha: '2018-07-15'
   },
   {
    tipo: 'CONSTANCIA_ABSTENCION',
    id:'1887AL',
    titulo:'CONSTANCIA_ABSTENCION',
-   descripcion:' ',
-   url:' ',
+   descripcion:'Este es un documento',
+   url:'http://archivo.com/midoc4.pdf',
       fecha: '2020-03-02'
   }
   ];
@@ -305,6 +305,34 @@ const dates = [
 ];
 
 
+const datesIni = [
+    '2010-01-08',
+    '2019-07-19',
+    '2010-02-13',
+    '2002-04-02',
+    '2010-10-08',
+    '2004-08-19',
+    '2012-02-13',
+    '2015-06-02'
+];
+
+
+const datesFin = [
+    '2021-01-08',
+    '2022-07-19',
+    '2021-02-13',
+    '2022-04-02',
+    '2021-10-08',
+    '2022-08-19',
+    '2022-02-13',
+    '2023-06-02'
+];
+
+const urls = [
+  'https://miinstitucion.com/doc1.pdf',
+    'https://miinstitucion.com/doc2.pdf',
+    'https://miinstitucion.com/documento.pdf',
+];
 
 
 const rfc = (person) => {
@@ -381,7 +409,9 @@ const getFaulttype = () => randomChoice(faulttype);
 const getNumbers = () => randomChoice(numbers);
 const getAuthority = () => randomChoice(authority);
 const getDates = () => randomChoice(dates);
-
+const getDatesIni = () => randomChoice(datesIni);
+const getDatesFin = () => randomChoice(datesFin);
+const getURL = () => randomChoice(urls);
 
 
 module.exports = {
@@ -404,6 +434,9 @@ module.exports = {
    getAuthority,
    getCountries,
    getDates,
+    getDatesIni,
+    getDatesFin,
+    getURL
 };
 
 
