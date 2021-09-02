@@ -160,6 +160,10 @@ const responsabilidades = [
    {
        clave: 'R',
        valor: 'RESOLUCIÓN'
+   },
+   {
+       clave: 'O',
+       valor: 'OTRO'
    }
 ];
 
