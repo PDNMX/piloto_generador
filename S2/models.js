@@ -36,7 +36,8 @@ let spicSchema = new Schema({
            nombre: String,
            nivel: String
       }
-   }
+   },
+    observaciones: String
 });
  
 let Spic = model('Spic', spicSchema, 'spic');

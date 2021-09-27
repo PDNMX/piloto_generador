@@ -132,7 +132,7 @@ const procedimientos = [
    },
    {
        clave: 2,
-       valor: 'CONCESIONES, LICENCIAS, PERMISOS, AUTORIZACIONES Y PRÓRROGAS'
+       valor: 'CONCESIONES, LICENCIAS, PERMISOS, AUTORIZACIONES Y SUS PRÓRROGAS'
    },
     {
        clave: 3,

@@ -57,7 +57,8 @@ for (let i = 0; i < nrows; i++) {
            curp: '',
            rfc: '',
            puesto: getPosition()
-       }
+       },
+       observaciones: ''
    });
 }
 
